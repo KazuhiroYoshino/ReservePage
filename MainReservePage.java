@@ -1,4 +1,4 @@
-package webUiTestReserveApp;
+package reservePage;
 
 import java.io.IOException;
 
@@ -10,22 +10,22 @@ public class MainReservePage {
 		WebTestReservePage reservePage = new WebTestReservePage();
 		reservePage.open();
 
-		testCaseFilename = "C:\\ReservePage\\TestConfig\\ReserveForm\\initCheck.csv";
-		resultFilename = "C:\\ReservePageTestResults\\ReserveForm\\initCheckResult.csv";
+		testCaseFilename = "D:\\ReservePage\\TestConfig\\ReserveForm\\initCheck.csv";
+		resultFilename = "D:\\ReservePageTestResults\\ReserveForm\\initCheckResult.csv";
 		reservePage.initCheck(testCaseFilename, resultFilename);
 		if(reservePage.reservePageError == 1) {
 			System.exit(1);
 		}
 
-		testCaseFilename = "C:\\ReservePage\\TestConfig\\ReserveForm\\reserveTestOldSite.csv";
-		resultFilename = "C:\\ReservePageTestResults\\ReserveForm\\reserveTestOldSiteResult.csv";
+		testCaseFilename = "D:\\ReservePage\\TestConfig\\ReserveForm\\reserveTestOldSite.csv";
+		resultFilename = "D:\\ReservePageTestResults\\ReserveForm\\reserveTestOldSiteResult.csv";
 		reservePage.reserveTest(testCaseFilename, resultFilename);
 		if(reservePage.reservePageError == 1) {
 			System.exit(1);
 		}
 
-		testCaseFilename = "C:\\ReservePage\\TestConfig\\ReserveForm\\reserveErrorTestOldSite.csv";
-		resultFilename = "C:\\ReservePageTestResults\\ReserveForm\\reserveErrorTestOldSiteResult.csv";
+		testCaseFilename = "D:\\ReservePage\\TestConfig\\ReserveForm\\reserveErrorTestOldSite.csv";
+		resultFilename = "D:\\ReservePageTestResults\\ReserveForm\\reserveErrorTestOldSiteResult.csv";
 		reservePage.reserveTest(testCaseFilename, resultFilename);
 		if(reservePage.reservePageError == 1) {
 			System.exit(1);

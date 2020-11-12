@@ -1,4 +1,4 @@
-package webUiTestReserveApp;
+package reservePage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -43,7 +43,7 @@ public class WebTestReservePage {
 	int reservePageError;
 
 	public void open() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver_win32\\chromedriver.exe");
 		//Mac
 //		System.setProperty("webDriver.chrome.driver", "/Volumes/data/WebDriver/Chrome/chromedriver");
 		webDriver = new ChromeDriver();
