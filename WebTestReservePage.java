@@ -21,6 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -63,7 +64,7 @@ public class WebTestReservePage {
 	}
 
 	public void chroniumEdgeOpen() throws InterruptedException {
-		System.setProperty("webdriver.edge.driver", "C:\\WebDriver\\edgedriver_win64\\msedgedriver.exe");
+		System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\edgedriver_win64\\msedgedriver.exe");
 
 		webDriver = new EdgeDriver();
 		Thread.sleep(3000);
@@ -76,6 +77,20 @@ public class WebTestReservePage {
         wait = new WebDriverWait(webDriver, 10);
 	}
 
+	public void fireFoxOpen() throws InterruptedException {
+		System.setProperty("webdriver.gecko.driver", "C:\\WebDrivers\\geckodriver_win64\\geckodriver.exe");
+
+		webDriver = new FirefoxDriver();
+		Thread.sleep(3000);
+		webDriver.get("http://example.selenium.jp/reserveApp/");
+		Thread.sleep(5000);
+		webDriver.manage().window().maximize();
+		Thread.sleep(2000);
+		webDriver.navigate().refresh();
+		Thread.sleep(5000);
+        wait = new WebDriverWait(webDriver, 10);
+
+	}
 	public void close() {
 		webDriver.quit();
 	}
