@@ -113,7 +113,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                testResult = testToday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                testResult = testTodaypicker(testTitle, commandLocater1, waitTime);
                 System.out.println(testResult);
                 pw.print(testResult);
                 break;
@@ -208,7 +208,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                holiday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                holidaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 1;
                 dateFromSet();
                 break;
@@ -218,7 +218,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                sunday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                sundaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -228,7 +228,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                monday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                mondaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -238,7 +238,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                tuesday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                tuesdaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -248,7 +248,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                wednesday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                wednesdaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -258,7 +258,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                thursday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                thursdaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -268,7 +268,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                friday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                fridaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -278,7 +278,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                saturday(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                saturdaypicker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
                 break;
@@ -501,7 +501,7 @@ public class WebTestReserveRenewalPage {
                 commandLocater2 = testConf[3];
                 commandLocater3 = testConf[4];
                 waitTime = Integer.valueOf(testConf[7]);
-                month3(testTitle, commandLocater1, commandLocater2, commandLocater3, waitTime);
+                month3picker(testTitle, commandLocater1, waitTime);
                 weekEnd = 0;
                 dateFromSet();
             	break;
@@ -602,13 +602,14 @@ public class WebTestReserveRenewalPage {
 
 	}
 
-	private void holiday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void holidaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -642,41 +643,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void sunday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void sundaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -710,41 +696,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void monday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void mondaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -778,41 +749,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void tuesday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void tuesdaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -846,41 +802,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void wednesday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void wednesdaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -914,41 +855,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void thursday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void thursdaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -982,41 +908,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void friday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void fridaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -1050,41 +961,26 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
-	private void saturday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void saturdaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.DATE, 1);
@@ -1118,31 +1014,15 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
@@ -1162,13 +1042,14 @@ public class WebTestReserveRenewalPage {
         Thread.sleep(waitTime);
 	}
 
-	private void month3(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private void month3picker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		Date reserveDate;
 		String testReserveDate;
 		String reserveYear;
 		String reserveMonth;
 		String reserveDay;
+		String reserveStartDate;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dt);
 		calendar.add(Calendar.MONTH, 4);
@@ -1187,31 +1068,15 @@ public class WebTestReserveRenewalPage {
 		testReserveDate = sdf.format(reserveDate);
 		dt = reserveDate;
 
+		reserveStartDate = testReserveDate.substring(0, 10);
+
 		reserveYear = testReserveDate.substring(0, 4);
         WebElement inputBoxYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.elementToBeClickable(inputBoxYear));
         inputBoxYear.clear();
         Thread.sleep(waitTime);
 //        reserveYear = reserveYear + "\n";
-        inputBoxYear.sendKeys(reserveYear);
-        Thread.sleep(waitTime);
-
-		reserveMonth = testReserveDate.substring(5, 7);
-        WebElement inputBoxMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxMonth));
-        inputBoxMonth.clear();
-        Thread.sleep(waitTime);
-//        reserveMonth = reserveMonth + "\n";
-        inputBoxMonth.sendKeys(reserveMonth);
-        Thread.sleep(waitTime);
-
-		reserveDay = testReserveDate.substring(8, 10);
-        WebElement inputBoxDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.elementToBeClickable(inputBoxDay));
-        inputBoxDay.clear();
-        Thread.sleep(waitTime);
-//        reserveDay = reserveDay + "\n";
-        inputBoxDay.sendKeys(reserveDay);
+        inputBoxYear.sendKeys(reserveStartDate);
         Thread.sleep(waitTime);
 	}
 
@@ -1287,40 +1152,23 @@ public class WebTestReserveRenewalPage {
         Thread.sleep(waitTime);
 	}
 
-	private String testToday(String testTitle, String commandLocater1, String commandLocater2, String commandLocater3,
+	private String testTodaypicker(String testTitle, String commandLocater1,
 			int waitTime) throws InterruptedException {
 		String resultText;
 		int todayYear = Integer.valueOf(testDate.substring(0, 4));
 		int todayMonth = Integer.valueOf(testDate.substring(5, 7));
 		int todayDay = Integer.valueOf(testDate.substring(8, 10));
+		String todayDate = testDate.substring(0, 10);
 
         WebElement elementYear = webDriver.findElement(By.id(commandLocater1));
         wait.until(ExpectedConditions.visibilityOf(elementYear));
-        int yearText = Integer.valueOf(elementYear.getAttribute("value"));
- 		if (yearText == todayYear) {
- 			resultText = testDate + ", " + testTitle + ", spec: " + todayYear + ", result: " + yearText + " :<TestYear success>" + "\n";
+        String todayText = elementYear.getAttribute("value");
+//        int yearText = Integer.valueOf(elementYear.getAttribute("value"));
+        if (todayText.equals(todayDate)) {
+// 		if (yearText == todayYear) {
+ 			resultText = testDate + ", " + testTitle + ", spec: " + todayDate + ", result: " + todayText + " :<TestYear success>" + "\n";
  		} else {
- 			resultText = testDate + ", " + testTitle + ", spec: " + todayYear + ", result: " + yearText + " :<TestYear fail>" + "\n";
- 			reservePageError = 1;
- 		}
-
- 		WebElement elementMonth = webDriver.findElement(By.id(commandLocater2));
-        wait.until(ExpectedConditions.visibilityOf(elementMonth));
-        int monthText = Integer.valueOf(elementMonth.getAttribute("value"));
- 		if (monthText == todayMonth) {
- 			resultText = resultText + testDate + ", " + testTitle + ", spec: " + todayMonth + ", result: " + monthText + " :<TestMonth success>" + "\n";
- 		} else {
- 			resultText = resultText + testDate + ", " + testTitle + ", spec: " + todayMonth + ", result: " + monthText + " :<TestMonth fail>" + "\n";
- 			reservePageError = 1;
- 		}
-
- 		WebElement elementDay = webDriver.findElement(By.id(commandLocater3));
-        wait.until(ExpectedConditions.visibilityOf(elementDay));
-        int dayText = Integer.valueOf(elementDay.getAttribute("value"));
- 		if (dayText == todayDay) {
- 			resultText = resultText + testDate + ", " + testTitle + ", spec: " + todayDay + ", result: " + dayText + " :<TestDay success>" + "\n";
- 		} else {
- 			resultText = resultText + testDate + ", " + testTitle + ", spec: " + todayDay + ", result: " + dayText + " :<TestDay fail>" + "\n";
+ 			resultText = testDate + ", " + testTitle + ", spec: " + todayDate + ", result: " + todayText + " :<TestYear fail>" + "\n";
  			reservePageError = 1;
  		}
 
