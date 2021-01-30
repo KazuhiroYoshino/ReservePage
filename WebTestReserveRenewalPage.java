@@ -1360,7 +1360,7 @@ public class WebTestReserveRenewalPage {
         	breakFastData = "off";
         }
         if(breakFastData.equals(breakFastValue)) {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest success>";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest success>" ;
         }else {
         	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest fail>";
  			reservePageError = 1;
