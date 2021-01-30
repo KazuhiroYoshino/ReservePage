@@ -1325,9 +1325,9 @@ public class WebTestReserveRenewalPage {
         }
 
         if(termData == term) {
-        	resultText = resultText + testDate + ", " + testTitle + ", Spec: " + term + ", Result: "+ termData + ", :<ReserveTermTest success>" + "\n";
+        	resultText = resultText + testDate + ", " + testTitle + ", Spec: " + term + ", Result: "+ termData + ", :<ReserveTermTest success>";
         }else {
-        	resultText = resultText + testDate + ", " + testTitle + ", Spec: " + term + ", Result: "+ termData + ", :<ReserveTermTest fail>" + "\n";
+        	resultText = resultText + testDate + ", " + testTitle + ", Spec: " + term + ", Result: "+ termData + ", :<ReserveTermTest fail>";
  			reservePageError = 1;
         }
         Thread.sleep(waitTime);
@@ -1340,9 +1340,9 @@ public class WebTestReserveRenewalPage {
         wait.until(ExpectedConditions.visibilityOf(element));
         int headCountData = Integer.valueOf(element.getText());
         if(headCountData == headCountValue) {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + headCountValue + ", Result: "+ headCountData + ", :<ReserveHeadCountTest success>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + headCountValue + ", Result: "+ headCountData + ", :<ReserveHeadCountTest success>";
         }else {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + headCountValue + ", Result: "+ headCountData + ", :<ReserveHeadCountTest fail>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + headCountValue + ", Result: "+ headCountData + ", :<ReserveHeadCountTest fail>";
  			reservePageError = 1;
         }
         Thread.sleep(waitTime);
@@ -1360,9 +1360,9 @@ public class WebTestReserveRenewalPage {
         	breakFastData = "off";
         }
         if(breakFastData.equals(breakFastValue)) {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest success>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest success>";
         }else {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest fail>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + breakFastValue + ", Result: "+ breakFastData + ", :<ReserveBreakFastTest fail>";
  			reservePageError = 1;
         }
         Thread.sleep(waitTime);
@@ -1380,9 +1380,9 @@ public class WebTestReserveRenewalPage {
         	planAdata = "off";
         }
         if(planAdata.equals(planAvalue)) {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + planAvalue + ", Result: "+ planAdata + ", :<ReservePlanA_Test success>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + planAvalue + ", Result: "+ planAdata + ", :<ReservePlanA_Test success>";
         }else {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + planAvalue + ", Result: "+ planAdata + ", :<ReservePlanA_Test fail>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + planAvalue + ", Result: "+ planAdata + ", :<ReservePlanA_Test fail>";
  			reservePageError = 1;
         }
         Thread.sleep(waitTime);
@@ -1400,9 +1400,9 @@ public class WebTestReserveRenewalPage {
         	planBdata = "off";
         }
         if(planBdata.equals(planBvalue)) {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + planBvalue + ", Result: "+ planBdata + ", :<ReservePlanB_Test success>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + planBvalue + ", Result: "+ planBdata + ", :<ReservePlanB_Test success>";
         }else {
-        	resultText = testDate + ", " + testTitle + ", Spec: " + planBvalue + ", Result: "+ planBdata + ", :<ReservePlanB_Test fail>" + "\n";
+        	resultText = testDate + ", " + testTitle + ", Spec: " + planBvalue + ", Result: "+ planBdata + ", :<ReservePlanB_Test fail>";
  			reservePageError = 1;
         }
         Thread.sleep(waitTime);
